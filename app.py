@@ -116,23 +116,20 @@ with tabs[0]:
     # ------- Reaction Time -------
     st.subheader("1) Reaction Time Test")
     st.write("Press **Start**, wait until the app shows `CLICK!`, then click it as fast as you can.")
-    col1, col2 = st.columns([1,2])
-    with col1:
-        if st.button("Start Reaction Test", key="start_rt"):
-            wait = random.uniform(1.8, 3.0)
-            st.info("Get ready... (do not press anything until CLICK appears)")
-            time.sleep(wait)  # brief blocking wait so student can't cheat by pre-clicking
-            st.session_state.rt_start_time = time.time()
-            st.session_state.rt_ready = True
-            st.rerun()
+    if st.button("Start Reaction Test", key="start_rt"):
+        wait = random.uniform(1.8, 3.0)
+        st.info("Get ready... (do not press anything until CLICK appears)")
+        time.sleep(wait)  # brief blocking wait so student can't cheat by pre-clicking
+        st.session_state.rt_start_time = time.time()
+        st.session_state.rt_ready = True
+        st.rerun()
 
-    with col2:
-        if st.session_state.rt_ready:
-            if st.button("CLICK! Now!", key="rt_click"):
-                rt = time.time() - st.session_state.rt_start_time
-                st.session_state.reaction_time = round(rt, 3)
-                st.success(f"Reaction time recorded: {st.session_state.reaction_time} seconds")
-                st.session_state.rt_ready = False
+    if st.session_state.rt_ready:
+        if st.button("CLICK! Now!", key="rt_click"):
+            rt = time.time() - st.session_state.rt_start_time
+            st.session_state.reaction_time = round(rt, 3)
+            st.success(f"Reaction time recorded: {st.session_state.reaction_time} seconds")
+            st.session_state.rt_ready = False
 
     st.markdown("---")
 
