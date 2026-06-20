@@ -167,7 +167,6 @@ with tabs[0]:
 
     st.markdown("---")
 
-    # ------- Concentration Test -------
     st.subheader("3) Concentration Grid")
     st.write("Press Start to generate a grid of `?`. Click cells to reveal letters. Find the single `O` (others are `Q`).")
     if st.button("Start Concentration Test", key="start_conc"):
@@ -242,7 +241,7 @@ with tabs[1]:
     if st.session_state.sentiment_label:
         st.write(f"Last sentiment: **{st.session_state.sentiment_label}** (score {st.session_state.sentiment_score})")
 
-# -------------------- Result & Export Tab --------------------
+
 with tabs[2]:
     st.header("Result, Recommendations & Export")
     st.write("When you're ready, compute the combined psychological score and suggested action.")
